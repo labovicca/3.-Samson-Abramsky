@@ -1,5 +1,6 @@
 PROJECT=AbramskiLabovicProdanUrosevicPajic
 TEXFILE=$(PROJECT).tex
+BIBFILE=$(PROJECT).bib
 LATEX=latex
 BIBTEX=bibtex
 TEMPFILES=$(shell cat .gitignore)
@@ -11,7 +12,7 @@ all:
 	$(LATEX) $(TEXFILE)
 
 watcher:
-	while [ 1 ]; do inotifywait $(TEXFILE); sleep 1; make all; done
+	while [ 1 ]; do inotifywait $(TEXFILE) $(BIBFILE); sleep 1; make all; done
 
 .PHONY: clean
 clean:

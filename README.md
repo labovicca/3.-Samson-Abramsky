@@ -7,6 +7,13 @@
 Прављење .dvi документа                     - $ make или $ make all
 Надглед датотека и аутоматско `LaTeX`-овање - $ make watcher
 Очистити све направљене датотеке            - $ make clean
+
+За аутоматско компајловање потребан је софтвер inotifywait.
+Ubuntu               - # apt install inotify-tools
+OpenSUSE (било који) - # zypper install inotify-tools
+Fedora               - # dnf install inotify-tools (Fedora 22+, >=2015. год.)
+                     - # yum install inotify-tools (пре 2015. год.)
+или преко било којег графичког програма за инсталацију софтвера (YaST, dnfdragora...)
 ```
 
 #### Пакети

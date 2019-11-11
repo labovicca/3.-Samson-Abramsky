@@ -19,8 +19,6 @@ Fedora               - # dnf install inotify-tools (Fedora 22+, >=2015. год.)
 или одговарајући графички програм за инсталацију софтвера (YaST, dnfdragora...)
 ```
 
-
-
 #### Пакети
 [scrextend](https://www.ctan.org/pkg/scrextend),
 [graphicx](https://www.ctan.org/pkg/graphicx),

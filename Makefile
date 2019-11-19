@@ -1,6 +1,9 @@
 # Ime projekta, svi TeX dokumenti moraju imati isto ime.
 # Primer $PROJECT.tex, $PROJECT.bib, itd...
 PROJECT=AbramskiLabovicProdanUrosevicPajic
+# Direktorijumi za clanak i prezentaciju
+DIR_CLANAK=./clanak
+DIR_PREZENTACIJA=./prezentacija
 # Programi za LaTeX-ovanje.
 LATEX=latex
 BIBTEX=bibtex
@@ -15,19 +18,20 @@ TEMPFILES=$(shell cat .gitignore)
 # Uobičajeno LaTeX-ovanje. Nakon poziva programa `make` bez parametera, ovo će
 # se izvršiti.
 all:
-	$(LATEX) $(TEXFILE)
-	$(BIBTEX) $(PROJECT).aux
-	$(LATEX) $(TEXFILE)
-	$(LATEX) $(TEXFILE)
+	cd $(DIR_CLANAK) && \
+	$(LATEX) $(TEXFILE) && \
+	$(BIBTEX) $(PROJECT).aux && \
+	$(LATEX) $(TEXFILE) && \
+	$(LATEX) $(TEXFILE);
 
 # Nadgledanje .tex i .bib datoteka, ukoliko dođe do njihovih promena, program
 # inotifywait pušta prolaz na dalje pozive, prvo `sleep 1`, nakon `make all`.
 # Ovo se radi neograniceno puta. Izlaz iz ove petlje je moguće slanjem signala
 # za izlaz, C-c (CTRL-c).
 watcher:
-	while [ 1 ]; do inotifywait $(TEXFILE) $(BIBFILE); sleep 1; make all; done
+	while [ 1 ]; do inotifywait $(DIR_CLANAK)/$(TEXFILE) $(BIBFILE); sleep 1; make all; done
 
 # Clean samo čisti prolazne datoteke, one koje su nastale tokom LaTeX-ovanja.
 .PHONY: clean
 clean:
-	@-rm $(TEMPFILES)
+	cd $(DIR_CLANAK) && rm $(TEMPFILES);

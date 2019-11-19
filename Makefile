@@ -5,7 +5,7 @@ PROJECT=AbramskiLabovicProdanUrosevicPajic
 DIR_CLANAK=./clanak
 DIR_PREZENTACIJA=./prezentacija
 # Programi za LaTeX-ovanje.
-LATEX=latex
+LATEX=latex -halt-on-error
 BIBTEX=bibtex
 # .tex i .bib fajlovi moraju imati isto ime, otuda se ovde koristi ime projekta.
 TEXFILE=$(PROJECT).tex
@@ -24,7 +24,7 @@ all: clanak prezentacija
 # Pravljenje članka
 .PHONY: clanak
 clanak:
-	cd $(DIR_CLANAK) && \
+	@cd $(DIR_CLANAK) && \
 	$(LATEX) $(TEXFILE) && \
 	$(BIBTEX) $(PROJECT).aux && \
 	$(LATEX) $(TEXFILE) && \
@@ -33,7 +33,7 @@ clanak:
 # Pravljenje prezentacije
 .PHONY: prezentacija
 prezentacija:
-	cd $(DIR_PREZENTACIJA) && \
+	@cd $(DIR_PREZENTACIJA) && \
 	$(LATEX) $(TEXFILE);
 
 # Nadgledanje .tex i .bib datoteka, ukoliko dođe do njihovih promena, program

@@ -17,11 +17,23 @@ TEMPFILES=$(shell cat .gitignore)
 
 # Uobičajeno LaTeX-ovanje. Nakon poziva programa `make` bez parametera, ovo će
 # se izvršiti.
-all:
+# Poziva metu `clanak` i `prezentacija`, efektivno pravi članak i prezentaciju.
+.PHONY: all
+all: clanak prezentacija
+
+# Pravljenje članka
+.PHONY: clanak
+clanak:
 	cd $(DIR_CLANAK) && \
 	$(LATEX) $(TEXFILE) && \
 	$(BIBTEX) $(PROJECT).aux && \
 	$(LATEX) $(TEXFILE) && \
+	$(LATEX) $(TEXFILE);
+
+# Pravljenje prezentacije
+.PHONY: prezentacija
+prezentacija:
+	cd $(DIR_PREZENTACIJA) && \
 	$(LATEX) $(TEXFILE);
 
 # Nadgledanje .tex i .bib datoteka, ukoliko dođe do njihovih promena, program
@@ -29,7 +41,7 @@ all:
 # Ovo se radi neograniceno puta. Izlaz iz ove petlje je moguće slanjem signala
 # za izlaz, C-c (CTRL-c).
 watcher:
-	while [ 1 ]; do inotifywait $(DIR_CLANAK)/$(TEXFILE) $(BIBFILE); sleep 1; make all; done
+	@while [ 1 ]; do inotifywait $(DIR_CLANAK)/$(TEXFILE) $(DIR_CLANAK)/$(BIBFILE) $(DIR_PREZENTACIJA)/$(TEXFILE); sleep 1; make all; done
 
 # Clean samo čisti prolazne datoteke, one koje su nastale tokom LaTeX-ovanja.
 .PHONY: clean

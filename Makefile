@@ -34,4 +34,4 @@ watcher:
 # Clean samo čisti prolazne datoteke, one koje su nastale tokom LaTeX-ovanja.
 .PHONY: clean
 clean:
-	cd $(DIR_CLANAK) && rm $(TEMPFILES);
+	-cd $(DIR_CLANAK) && rm $(TEMPFILES);

@@ -46,11 +46,13 @@ clanak_pdf:
 .PHONY: prezentacija
 prezentacija:
 	@cd $(DIR_PREZENTACIJA) && \
+	$(LATEX) $(TEXFILE) && \
 	$(LATEX) $(TEXFILE);
 
 .PHONY: prezentacija_pdf
 prezentacija_pdf:
 	@cd $(DIR_PREZENTACIJA) && \
+	$(PDFLATEX) $(TEXFILE) && \
 	$(PDFLATEX) $(TEXFILE);
 
 

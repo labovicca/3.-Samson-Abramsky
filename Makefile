@@ -6,6 +6,7 @@ DIR_CLANAK=./clanak
 DIR_PREZENTACIJA=./prezentacija
 # Programi za LaTeX-ovanje.
 LATEX=latex -halt-on-error
+PDFLATEX=pdflatex -halt-on-error
 BIBTEX=bibtex
 # .tex i .bib fajlovi moraju imati isto ime, otuda se ovde koristi ime projekta.
 TEXFILE=$(PROJECT).tex
@@ -21,6 +22,9 @@ TEMPFILES=$(shell cat .gitignore)
 .PHONY: all
 all: clanak prezentacija
 
+.PHONY: pdf
+pdf: clanak_pdf prezentacija_pdf
+
 # Pravljenje članka
 .PHONY: clanak
 clanak:
@@ -30,11 +34,25 @@ clanak:
 	$(LATEX) $(TEXFILE) && \
 	$(LATEX) $(TEXFILE);
 
+.PHONY: clanak_pdf
+clanak_pdf:
+	@cd $(DIR_CLANAK) && \
+	$(PDFLATEX) $(TEXFILE) && \
+	$(BIBTEX) $(PROJECT).aux && \
+	$(PDFLATEX) $(TEXFILE) && \
+	$(PDFLATEX) $(TEXFILE);
+
 # Pravljenje prezentacije
 .PHONY: prezentacija
 prezentacija:
 	@cd $(DIR_PREZENTACIJA) && \
 	$(LATEX) $(TEXFILE);
+
+.PHONY: prezentacija_pdf
+prezentacija_pdf:
+	@cd $(DIR_PREZENTACIJA) && \
+	$(PDFLATEX) $(TEXFILE);
+
 
 # Nadgledanje .tex i .bib datoteka, ukoliko dođe do njihovih promena, program
 # inotifywait pušta prolaz na dalje pozive, prvo `sleep 1`, nakon `make all`.
@@ -42,8 +60,11 @@ prezentacija:
 # za izlaz, C-c (CTRL-c).
 watcher:
 	@while [ 1 ]; do inotifywait $(DIR_CLANAK)/$(TEXFILE) $(DIR_CLANAK)/$(BIBFILE) $(DIR_PREZENTACIJA)/$(TEXFILE); sleep 1; make all; done
-
+watcher_pdf:
+	@while [ 1 ]; do inotifywait $(DIR_CLANAK)/$(TEXFILE) $(DIR_CLANAK)/$(BIBFILE) $(DIR_PREZENTACIJA)/$(TEXFILE); sleep 1; make pdf; done
 # Clean samo čisti prolazne datoteke, one koje su nastale tokom LaTeX-ovanja.
 .PHONY: clean
 clean:
 	-cd $(DIR_CLANAK) && rm $(TEMPFILES);
+	-cd $(DIR_PREZENTACIJA) && rm $(TEMPFILES);
+

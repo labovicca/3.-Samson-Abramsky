@@ -10,12 +10,6 @@
 \usepackage[unicode]{hyperref}
 \hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
 
-\begin{document}
-
-\bibliographystyle{plain}
-\bibstyle{plain}
-\bibliography{AbramskiLabovicProdanUrosevicPajic}
-\end{thebibliography}
 \title{Самсон Абрамски\\ \small{Семинарски рад у оквиру курса\\Техничко и научно писање\\ Математички факултет \\ Универзитет у Београду}}
 
 \date{3. новембар 2019.}
@@ -25,11 +19,27 @@
 	Александар Урошевић \\ mi19201@alas.matf.bg.ac.rs \and
 	Вељко Продан \\ mi19163@alas.matf.bg.ac.rs }
 
-\begin{center}
+\begin{document}
+
 \maketitle
-\end{center}
 
 \abstract{\textbf{Самсон Абрамски} (рођен 12. марта 1953.)\cite{pub}\cite{saz} је информатичар са професуром Кристифора Странчеја на институту информатике Универзитета у Оксфорду. Допринео је областима теорије домена, ламбда рачунa, анализи строгости функција, теорија паралелности, категорије интеракција, геометрије интеракције, семантика игара и квантних рачунара.\cite{sa} \cite{sam} \cite{lin} \cite{log} \cite{rad} \cite{ram} }
+
+\label{slike_i_tabele}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|l|l|} \hline
+\multicolumn{2}{|c|}{\raisebox{0.6em}{\includegraphics[scale=0.8]{abramski.eps}}}\\
+\multicolumn{2}{|c|}{Самсон Абрамски}\\ \hline
+\textbf{Датум рођења} &12. март 1953\\ \hline
+\textbf{Пребивалиште} &	Уједињено Краљевство\\ \hline
+\textbf{Ментори} & Ричард Борнат\\ \hline
+\end{tabular}
+\label{tab:tabela1}
+\end{center}
+\end{table}
+
+\newpage
 
 \tableofcontents
 
@@ -104,20 +114,10 @@
 \begin{addmargin}{2em}
 \emph{„Самсон Абрамски се истиче за исконски допринос математичких темеља рачунања. Његово неприкосновено достигнуће је развој семантике игара као и теорија о рачунским процесима што излаже математичке структуре протока информација између њих. Ово је довело до моћних апликација у проучавању програмских језика, нудећи нове одлучне увиде у природу секвенцијалности, стања, контроле, и многих других рачунарских карактеристика. То сада води новом развоју рачунарских програмских анализа и верификација. Једна важна нит, која такође важи као допринос у логици, је генерализација Жирарове Геометрије интеракција, што је довело до новог жанра потпуних теорема, што карактерише „простор доказа” у логици. Пре тога, Абрамски је направио важне доприносе апстракној интерпретацији, теорије домена, ламбда ($\lambda$) рачуну и паралелности. Он наставља да осветљава широк распон тема својим креативним и оштрим увидима, радећи нешто ново, и донесећи ред и јединство постојећем раду.”}
 \end{addmargin}
-\section{Слика и табела}
-\label{slike_i_tabele}
-\begin{table}[h!]
-\begin{center}
-\begin{tabular}{|l|l|} \hline
-\multicolumn{2}{|c|}{\raisebox{0.6em}{\includegraphics[]{abramski.eps}}}\\
-\multicolumn{2}{|c|}{Самсон Абрамски}\\ \hline
-\textbf{Датум рођења} &12. март 1953\\ \hline
-\textbf{Пребивалиште} &	Уједињено Краљевство\\ \hline
-\textbf{Ментори} & Ричард Борнат\\ \hline
-\end{tabular}
-\label{tab:tabela1}
-\end{center}
-\end{table}
+\newpage
 
+\bibstyle{plain}
+\bibliographystyle{plain}
+\bibliography{AbramskiLabovicProdanUrosevicPajic}
 
 \end{document}
